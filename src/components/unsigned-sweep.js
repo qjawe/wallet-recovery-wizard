@@ -174,37 +174,37 @@ class UnsignedSweep extends Component {
           </Row>
           {this.requiredParams[this.state.coin].includes('userKey') &&
           <InputField
-            label='User Xpub'
+            label='User Public Key'
             name='userKey'
             value={this.state.userKey}
             onChange={this.updateRecoveryInfo}
             tooltipText={formTooltips.userKey}
             disallowWhiteSpace={true}
-            format='xpub'
+            format='pub'
           />
           }
 
           {this.requiredParams[this.state.coin].includes('backupKey') &&
             <InputField
-              label='Backup Xpub'
+              label='Backup Public Key'
               name='backupKey'
               value={this.state.backupKey}
               onChange={this.updateRecoveryInfo}
               tooltipText={formTooltips.backupPublicKey}
               disallowWhiteSpace={true}
-              format='xpub'
+              format='pub'
             />
           }
 
           {this.requiredParams[this.state.coin].includes('bitgoKey') &&
           <InputField
-            label='BitGo Xpub'
+            label='BitGo Public Key'
             name='bitgoKey'
             value={this.state.bitgoKey}
             onChange={this.updateRecoveryInfo}
             tooltipText={formTooltips.bitgoKey}
             disallowWhiteSpace={true}
-            format='xpub'
+            format='pub'
           />
           }
 

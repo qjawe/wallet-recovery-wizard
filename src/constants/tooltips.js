@@ -37,7 +37,7 @@ export default {
     twofa: 'Second factor authentication (2FA) code',
   },
   unsignedSweep: {
-    userKey: `Your user xpub`,
+    userKey: `Your user public key`,
     backupPublicKey: `The backup public key for the wallet, as found on your recovery KeyCard.`,
     bitgoKey: `The BitGo public key for the wallet, as found on your recovery KeyCard.`,
     rootAddress: 'The root address of the wallet.',
