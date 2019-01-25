@@ -11,6 +11,7 @@ import krsProviders from 'constants/krs-providers';
 
 const fs = window.require('fs');
 const formTooltips = tooltips.unsignedSweep;
+const { dialog } = window.require('electron').remote;
 
 class UnsignedSweep extends Component {
   state = {
@@ -103,9 +104,24 @@ class UnsignedSweep extends Component {
 
       const recoveryPrebuild = await baseCoin.recover(recoveryParams);
 
-      const filename = baseCoin.getChain() + "-unsigned-sweep-" + Date.now().toString() + ".json";
-      fs.writeFileSync(filename, JSON.stringify(recoveryPrebuild, null, 2));
-      this.setState({ recovering: false, done: true, finalFilename: filename });
+      const fileName = baseCoin.getChain() + "-unsigned-sweep-" + Date.now().toString() + ".json";
+      const dialogParams = {
+        filters: [{
+          name: 'Custom File Type',
+          extensions: ['json']
+        }],
+        defaultPath: '~/' + fileName
+      };
+
+      // Retrieve the desired file path and file name
+      const filePath = dialog.showSaveDialog(dialogParams);
+      if (!filePath) {
+        // TODO: The user exited the file creation process. What do we do?
+        return;
+      }
+
+      fs.writeFileSync(filePath, JSON.stringify(recoveryPrebuild, null, 4), 'utf8');
+      this.setState({ recovering: false, done: true, finalFilename: filePath });
     } catch (e) {
       this.setState({ error: e.message, recovering: false });
     }
