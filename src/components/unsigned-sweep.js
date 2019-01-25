@@ -71,14 +71,6 @@ class UnsignedSweep extends Component {
     this.setState({ coin: option.value });
   }
 
-  updateKrs = (option) => {
-    if (option === null) {
-      this.setState({ krsProvider: null });
-    } else {
-      this.setState({ krsProvider: option.value });
-    }
-  }
-
   async performRecovery() {
     this.setState({ recovering: true, error: '' });
 
@@ -98,7 +90,7 @@ class UnsignedSweep extends Component {
       const recoveryParams = [
         'userKey', 'backupKey', 'bitgoKey', 'rootAddress',
         'walletContractAddress', 'tokenAddress',
-        'recoveryDestination', 'scan', 'krsProvider'
+        'recoveryDestination', 'scan'
       ].reduce((obj, param) => {
         if (this.state[param]) {
           let value = this.state[param];
