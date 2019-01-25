@@ -103,7 +103,7 @@ class UnsignedSweep extends Component {
 
       const recoveryPrebuild = await baseCoin.recover(recoveryParams);
 
-      const filename = this.state.coin + "-unsigned-sweep-" + Date.now().toString() + ".json";
+      const filename = baseCoin.getChain() + "-unsigned-sweep-" + Date.now().toString() + ".json";
       fs.writeFileSync(filename, JSON.stringify(recoveryPrebuild, null, 2));
       this.setState({ recovering: false, done: true, finalFilename: filename });
     } catch (e) {
